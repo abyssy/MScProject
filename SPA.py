@@ -158,5 +158,7 @@ spa.spa_students()
 print("")
 print("M': Result matching:")
 spa.show_matching(False)
+
 spa.transform_m1_to_m()
+print("M: Final Matching:")
 spa.show_matching(True)
