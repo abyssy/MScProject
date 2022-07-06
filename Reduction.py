@@ -112,6 +112,15 @@ class Reduction:
                 length = len(lecturer_preference_list)
                 self.lp_rank[lecturer + '1'] = {lecturer_preference_list[i]: i for i in range(length)}
                 self.lp[lecturer + '1'] = [capacity, self.lp_rank[lecturer + '1']]
+                d = {}
+                for project in self.plc:
+                    if self.plc[project][0] == lecturer + '1':
+                        d[project] = []
+                        for student in lecturer_preference_list:
+                            if project in self.sp[student][0]:
+                                d[project].append(student)
+                        length = len(d[project])
+                        self.proj_rank[project] = {d[project][i]: i for i in range(length)}
 
         for student in self.sp:
             preference_list = self.sp[student][0]
