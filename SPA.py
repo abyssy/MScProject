@@ -20,9 +20,13 @@ class SPA:
         for student in self.sp:
             self.s_queue.put(student)
 
+        # M' in I'
         self.s_p_matching = dict()
         self.p_s_matching = dict()
         self.l_s_matching = dict()
+
+        # M in I
+        self.final_matching = dict()
 
     def spa_students(self):
         # while (some student si is free and si has a non-empty list) {
@@ -107,6 +111,7 @@ class SPA:
                 for st in self.proj_rank[project]:
                     if self.proj_rank[project][st] > last_rank:
                         successor.append(st)
+                # "delete (st, pj);"
                 for st in successor:
                     if st in self.proj_rank[project].keys():
                         self.proj_rank[project].pop(st)
@@ -129,6 +134,7 @@ class SPA:
                 for st in self.lp_rank[lecturer]:
                     if self.lp_rank[lecturer][st] > last_rank:
                         for pu in self.sp[st][0]:
+                            # "delete (st, pu)"
                             if self.plc[pu][0] == lecturer:
                                 if st in self.proj_rank[pu].keys():
                                     self.proj_rank[pu].pop(st)
@@ -136,12 +142,21 @@ class SPA:
                                 s_preference_list.remove(pu)
                                 self.sp[st][0] = s_preference_list
 
-    def show_matching(self):
-        print(self.s_p_matching)
+    def show_matching(self, is_final_matching):
+        if is_final_matching:
+            print(self.final_matching)
+        else:
+            print(self.s_p_matching)
+
+    def transform_m1_to_m(self):
+        for s in self.s_p_matching:
+            self.final_matching[s] = self.s_p_matching[s][:2]
 
 
 spa = SPA("input.txt")
 spa.spa_students()
 print("")
-print("Result matching:")
-spa.show_matching()
+print("M': Result matching:")
+spa.show_matching(False)
+spa.transform_m1_to_m()
+spa.show_matching(True)
