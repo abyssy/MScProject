@@ -73,17 +73,17 @@ class ReadInstance:
         # -------------------------------------------------------------------------------------------------------------------------------
 
 
-# s = ReadInstance()
-# filename = "input.txt"
-# s.read_file(filename)
-# print("Student_Project:")
-# print(s.sp)
-# print("Project_lecturer:")
-# print(s.plc)
-# print("Lecturer_project:")
-# print(s.lp)
-# print("Lecturer_project_rank:")
-# print(s.lp_rank)
-# print("project_rank:")
-# print(s.proj_rank)
-# print()
+s = ReadInstance()
+filename = "input.txt"
+s.read_file(filename)
+print("Student_Project:")
+print(s.sp)
+print("Project_lecturer:")
+print(s.plc)
+print("Lecturer_project:")
+print(s.lp)
+print("Lecturer_project_rank:")
+print(s.lp_rank)
+print("project_rank:")
+print(s.proj_rank)
+print()

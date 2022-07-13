@@ -14,8 +14,6 @@ class SPA:
         self.lp = r.lp
         self.lp_rank = r.lp_rank
         self.proj_rank = r.proj_rank
-        self.p_status = r.p_status
-        self.l_status = r.l_status
         self.s_queue = Queue()
         for student in self.sp:
             self.s_queue.put(student)
@@ -27,6 +25,16 @@ class SPA:
 
         # M in I
         self.final_matching = dict()
+
+        # used for check stability
+        self.init_sp = self.sp
+        self.init_plc = self.plc
+        self.init_lp = self.lp
+        self.init_lp_rank = self.lp_rank
+        self.init_proj_rank = self.proj_rank
+        self.blockingpair = False
+        self.project_wstcounter = {project: [0, []] for project in self.plc}
+        self.lecturer_wstcounter = {lecturer: [0, []] for lecturer in self.lp}
 
     def spa_students(self):
         # while (some student si is free and si has a non-empty list) {
@@ -152,13 +160,103 @@ class SPA:
         for s in self.s_p_matching:
             self.final_matching[s] = self.s_p_matching[s][:2]
 
+    def update_worst_counter(self):
+        for project in self.p_s_matching:
+            students = self.p_s_matching[project]
+            for student in students:
+                self.project_wstcounter[project][1].append(self.init_proj_rank[project][student])
+        for lecturer in self.l_s_matching:
+            students = self.l_s_matching[lecturer]
+            for student in students:
+                self.lecturer_wstcounter[lecturer][1].append(self.init_lp_rank[lecturer][student])
+        for project in self.init_plc:
+            if self.project_wstcounter[project][1] != []:
+                self.project_wstcounter[project][0] = max(self.project_wstcounter[project][1])
+        for lecturer in self.init_lp:
+            if self.lecturer_wstcounter[lecturer][1] != []:
+                self.lecturer_wstcounter[lecturer][0] = max(self.lecturer_wstcounter[lecturer][1])
+
+    def blockingpair1(self, project, lecturer):
+        #  project and lecturer are both under-subscribed
+        if self.init_plc[project][1] > len(self.p_s_matching[project]) and self.init_lp[lecturer][0] > len(
+                self.l_s_matching[project]):
+            # print("type 1:, ", project)
+            self.blockingpair = True
+
+    def blockingpair2(self, student, project, lecturer, m):
+        #  project is under-subscribed, lecturer is full and l_k prefers s_i to its worst student in M(l_k)
+        if self.init_plc[project][1] > len(self.p_s_matching[project]) and self.init_lp[lecturer][0] == len(
+                self.l_s_matching[project]):
+            matched_project = m[student]
+            # check if the student is already matched to a project offered by l_k
+            if matched_project != '':
+                lec = self.init_plc[matched_project][0]
+                if lec == lecturer:
+                    self.blockingpair = True
+            # check if s_i is in a position before the worst student assigned to l_k
+            student_rank_Lk = self.init_lp_rank[lecturer][student]
+            if student_rank_Lk < self.lecturer_wstcounter[lecturer][0]:
+                # print("type 2b:, ", student, project)
+                self.blockingpair = True
+
+    def blockingpair3(self, student, project, lecturer):
+        #  project is full and lecturer prefers s_i to the worst student assigned to M(p_j)
+        if self.init_plc[project][1] == len(self.p_s_matching[project]):
+            student_rank_Lkj = self.init_proj_rank[project][student]
+            if student_rank_Lkj < self.project_wstcounter[project][0]:
+                # print("type 3:, ", student, project, self.project_wstcounter[project][0])
+                self.blockingpair = True
+
+    def check_stability(self):
+        self.update_worst_counter()
+        m = self.s_p_matching
+        for student in m:
+            # if student s_i is not assigned in M, we check if it forms a blocking pair with all the projects in A(s_i).
+            if m[student] == '':
+                # # list of pj's wrt to s_i
+                p = self.init_sp[student][0]
+            else:
+                matched_project = m[student]
+                # find its rank on s_i's preference list A(s_i)
+                rank_matched_project = self.init_sp[student][1][matched_project]
+                p_list = self.init_sp[student][0]  # list of pj's wrt to s_i      # a copy of A(s_i)
+                # we check all the projects that comes before the assigned project in A(s_i)
+                p = p_list[:rank_matched_project]
+
+            for project in p:
+                lecturer = self.init_plc[project][0]  # l_k
+
+                self.blockingpair1(project, lecturer)
+                if self.blockingpair:
+                    print("1")
+                    break
+
+                self.blockingpair2(student, project, lecturer, m)
+                if self.blockingpair:
+                    print("2")
+                    break
+
+                self.blockingpair3(student, project, lecturer)
+                if self.blockingpair:
+                    print("3")
+                    break
+
+            if self.blockingpair:
+                break
+
 
 spa = SPA("input.txt")
 spa.spa_students()
 print("")
-print("M': Result matching:")
+print("M': Matching in SPA:")
 spa.show_matching(False)
 
 spa.transform_m1_to_m()
-print("M: Final Matching:")
-spa.show_matching(True)
+spa.check_stability()
+print("Project worst student counter:")
+print(spa.project_wstcounter)
+print("******* Is blocking pair?: *******")
+print(spa.blockingpair)
+# print("M: Final Matching:")
+# spa.show_matching(True)
+print("")
