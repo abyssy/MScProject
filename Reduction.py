@@ -6,6 +6,8 @@ class Reduction:
         self.filename = filename
         r = ReadInstance()
         r.read_file(self.filename)
+        # print(r.sp)
+        # print(r.plc)
 
         self.students = r.students
         self.projects = r.projects
@@ -37,6 +39,7 @@ class Reduction:
             else:
                 self.p_status[project] = 1
                 self.plc[project + '1'] = [lecturer + '1', capacity]
+        # print(self.plc)
 
         for i in range(self.students):
             student = 's' + str(i + 1)
@@ -52,6 +55,7 @@ class Reduction:
             length = len(preference_list)
             rank = {preference_list[i]: i for i in range(length)}
             self.sp[student] = [preference_list, rank]
+        # print(self.sp)
 
         for i in range(self.lecturers):
             lecturer = 'l' + str(i + 1)
@@ -130,7 +134,7 @@ class Reduction:
 
 
 # filename = "input.txt"
-# filename = "instances/instance1.txt"
+# filename = "instances_SPASLQP/instance1.txt"
 # r = Reduction(filename)
 # print("Student_Project:")
 # print(r.sp)

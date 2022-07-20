@@ -1,0 +1,198 @@
+SPA_SLQP: instance1.txt
+--------------------------------------------------
+{'s1': 'p1', 's2': '', 's3': 'p2', 's4': 'p3', 's5': 'p4', 's6': 'p4', 's7': '', 's8': 'p5', 's9': 'p5', 's10': ''}
+Brute Force: No feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+No Stable Matching
+SPA_SLQP: No feasible matching!
+
+
+SPA_SLQP: instance2.txt
+--------------------------------------------------
+{'s1': 'p4', 's2': 'p2', 's3': 'p4', 's4': 'p5', 's5': 'p2', 's6': 'p5', 's7': 'p4', 's8': 'p1', 's9': 'p3', 's10': 'p3'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p4', 's2': 'p2', 's3': 'p4', 's4': 'p5', 's5': 'p2', 's6': 'p5', 's7': 'p4', 's8': 'p1', 's9': 'p3', 's10': 'p3'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance3.txt
+--------------------------------------------------
+{'s1': 'p1', 's2': '', 's3': 'p1', 's4': '', 's5': 'p4', 's6': 'p3', 's7': 'p1', 's8': 'p4', 's9': 'p1', 's10': 'p5'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p1', 's2': '', 's3': 'p1', 's4': '', 's5': 'p4', 's6': 'p3', 's7': 'p1', 's8': 'p4', 's9': 'p1', 's10': 'p5'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance4.txt
+--------------------------------------------------
+{'s1': 'p4', 's2': 'p2', 's3': 'p2', 's4': 'p3', 's5': 'p1', 's6': 'p3', 's7': 'p1', 's8': 'p1', 's9': 'p5', 's10': 'p1'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p4', 's2': 'p2', 's3': 'p2', 's4': 'p3', 's5': 'p1', 's6': 'p3', 's7': 'p1', 's8': 'p1', 's9': 'p5', 's10': 'p1'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance5.txt
+--------------------------------------------------
+{'s1': 'p2', 's2': 'p5', 's3': 'p5', 's4': 'p3', 's5': 'p4', 's6': 'p1', 's7': 'p2', 's8': 'p3', 's9': 'p2', 's10': 'p1'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p2', 's2': 'p5', 's3': 'p5', 's4': 'p3', 's5': 'p4', 's6': 'p1', 's7': 'p2', 's8': 'p3', 's9': 'p2', 's10': 'p1'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance6.txt
+--------------------------------------------------
+{'s1': 'p1', 's2': 'p2', 's3': 'p5', 's4': 'p3', 's5': 'p4', 's6': 'p2', 's7': 'p3', 's8': 'p3', 's9': 'p1', 's10': 'p2'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p1', 's2': 'p2', 's3': 'p5', 's4': 'p3', 's5': 'p4', 's6': 'p2', 's7': 'p3', 's8': 'p3', 's9': 'p1', 's10': 'p2'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance7.txt
+--------------------------------------------------
+{'s1': 'p1', 's2': 'p2', 's3': 'p2', 's4': 'p5', 's5': 'p2', 's6': 'p4', 's7': 'p4', 's8': 'p3', 's9': 'p1', 's10': 'p3'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p1', 's2': 'p2', 's3': 'p2', 's4': 'p5', 's5': 'p2', 's6': 'p4', 's7': 'p4', 's8': 'p3', 's9': 'p1', 's10': 'p3'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance8.txt
+--------------------------------------------------
+{'s1': 'p1', 's2': '', 's3': 'p2', 's4': '', 's5': 'p2', 's6': 'p2', 's7': '', 's8': 'p1', 's9': 'p2', 's10': 'p4'}
+Brute Force: No feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+No Stable Matching
+SPA_SLQP: No feasible matching!
+
+
+SPA_SLQP: instance9.txt
+--------------------------------------------------
+{'s1': 'p5', 's2': 'p4', 's3': 'p4', 's4': 'p2', 's5': 'p2', 's6': 'p1', 's7': 'p5', 's8': 'p5', 's9': 'p1', 's10': 'p1'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p5', 's2': 'p4', 's3': 'p4', 's4': 'p2', 's5': 'p2', 's6': 'p1', 's7': 'p5', 's8': 'p5', 's9': 'p1', 's10': 'p1'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance10.txt
+--------------------------------------------------
+{'s1': 'p1', 's2': 'p2', 's3': 'p1', 's4': 'p5', 's5': 'p5', 's6': 'p2', 's7': 'p3', 's8': 'p5', 's9': 'p1', 's10': 'p4'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p1', 's2': 'p2', 's3': 'p1', 's4': 'p5', 's5': 'p5', 's6': 'p2', 's7': 'p3', 's8': 'p5', 's9': 'p1', 's10': 'p4'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance11.txt
+--------------------------------------------------
+{'s1': '', 's2': 'p3', 's3': 'p5', 's4': '', 's5': 'p5', 's6': '', 's7': 'p1', 's8': 'p4', 's9': 'p2', 's10': ''}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': '', 's2': 'p3', 's3': 'p5', 's4': '', 's5': 'p5', 's6': '', 's7': 'p1', 's8': 'p4', 's9': 'p2', 's10': ''}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance12.txt
+--------------------------------------------------
+{'s1': 'p4', 's2': 'p1', 's3': 'p2', 's4': 'p5', 's5': 'p4', 's6': 'p4', 's7': 'p3', 's8': 'p5', 's9': 'p2', 's10': 'p3'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p4', 's2': 'p1', 's3': 'p2', 's4': 'p5', 's5': 'p4', 's6': 'p4', 's7': 'p3', 's8': 'p5', 's9': 'p2', 's10': 'p3'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance13.txt
+--------------------------------------------------
+{'s1': 'p5', 's2': 'p4', 's3': 'p3', 's4': 'p2', 's5': 'p4', 's6': 'p4', 's7': '', 's8': '', 's9': '', 's10': 'p3'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p5', 's2': 'p4', 's3': 'p3', 's4': 'p2', 's5': 'p4', 's6': 'p4', 's7': '', 's8': '', 's9': '', 's10': 'p3'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance14.txt
+--------------------------------------------------
+{'s1': 'p1', 's2': 'p2', 's3': 'p2', 's4': 'p3', 's5': 'p3', 's6': 'p3', 's7': 'p2', 's8': 'p4', 's9': 'p5', 's10': 'p3'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p1', 's2': 'p2', 's3': 'p2', 's4': 'p3', 's5': 'p3', 's6': 'p3', 's7': 'p2', 's8': 'p4', 's9': 'p5', 's10': 'p3'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance15.txt
+--------------------------------------------------
+{'s1': 'p2', 's2': 'p3', 's3': '', 's4': '', 's5': 'p5', 's6': 'p4', 's7': 'p5', 's8': 'p1', 's9': '', 's10': 'p3'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p2', 's2': 'p3', 's3': '', 's4': '', 's5': 'p5', 's6': 'p4', 's7': 'p5', 's8': 'p1', 's9': '', 's10': 'p3'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance16.txt
+--------------------------------------------------
+{'s1': 'p1', 's2': 'p3', 's3': '', 's4': 'p5', 's5': 'p1', 's6': 'p1', 's7': 'p1', 's8': '', 's9': 'p4', 's10': 'p3'}
+Brute Force: No feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+No Stable Matching
+SPA_SLQP: No feasible matching!
+
+
+SPA_SLQP: instance17.txt
+--------------------------------------------------
+{'s1': 'p3', 's2': 'p5', 's3': '', 's4': 'p2', 's5': 'p3', 's6': 'p4', 's7': 'p4', 's8': '', 's9': 'p4', 's10': 'p5'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p3', 's2': 'p5', 's3': '', 's4': 'p2', 's5': 'p3', 's6': 'p4', 's7': 'p4', 's8': '', 's9': 'p4', 's10': 'p5'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance18.txt
+--------------------------------------------------
+{'s1': 'p1', 's2': 'p4', 's3': 'p1', 's4': 'p1', 's5': 'p5', 's6': 'p1', 's7': 'p3', 's8': 'p1', 's9': 'p2', 's10': 'p3'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p1', 's2': 'p4', 's3': 'p1', 's4': 'p1', 's5': 'p5', 's6': 'p1', 's7': 'p3', 's8': 'p1', 's9': 'p2', 's10': 'p3'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance19.txt
+--------------------------------------------------
+{'s1': 'p1', 's2': 'p3', 's3': 'p3', 's4': 'p4', 's5': 'p3', 's6': 'p2', 's7': 'p5', 's8': 'p5', 's9': 'p5', 's10': 'p1'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p1', 's2': 'p3', 's3': 'p3', 's4': 'p4', 's5': 'p3', 's6': 'p2', 's7': 'p5', 's8': 'p5', 's9': 'p5', 's10': 'p1'}
+SPA_SLQP: Has a feasible matching!
+
+
+SPA_SLQP: instance20.txt
+--------------------------------------------------
+{'s1': 'p5', 's2': 'p3', 's3': 'p2', 's4': 'p5', 's5': 'p4', 's6': 'p3', 's7': '', 's8': 'p1', 's9': 'p5', 's10': 'p2'}
+Brute Force: Has a feasible matching!
+--------------------------------------------------
+Matching in SPASLQP:
+{'s1': 'p5', 's2': 'p3', 's3': 'p2', 's4': 'p5', 's5': 'p4', 's6': 'p3', 's7': '', 's8': 'p1', 's9': 'p5', 's10': 'p2'}
+SPA_SLQP: Has a feasible matching!

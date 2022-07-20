@@ -17,6 +17,7 @@ class SPA:
         self.lp_rank = r.lp_rank
         self.proj_rank = r.proj_rank
         self.s_queue = Queue()
+        self.res = dict()
         for student in self.sp:
             self.s_queue.put(student)
 
@@ -167,6 +168,7 @@ class SPA:
                     else:
                         project = ''
                     res[student] = project
+                self.res = res
                 print(res)
 
     def transform_m1_to_m(self):

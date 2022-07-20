@@ -129,7 +129,7 @@ class SPAS:
                     project = 'p' + str(m)
                     capacity = self.plc[project][0]
                     lecturer = self.plc[project][1][1:]  # index of the lecturer that offers the project
-                    lower_quota = random.randrange(0, max(capacity, 3))
+                    lower_quota = random.randrange(0, min(capacity, 3))
                     # SPA: I.write(str(m) + ' ' + str(capacity) + ' 0 ' + str(lecturer))
                     # SPASLQP:
                     I.write(str(m) + ' ' + str(capacity) + ' ' + str(lower_quota) + ' ' + str(lecturer))

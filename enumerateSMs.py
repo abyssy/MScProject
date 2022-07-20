@@ -24,12 +24,31 @@ class ESMS:
         self.lp = r.lp
         self.lp_rank = r.lp_rank
         self.proj_rank = r.proj_rank
+        self.proj_lower_quota = r.proj_lower_quota
 
         self.M = {s: '' for s in self.sp}
         self.project_wstcounter = {'p' + str(i): [0, []] for i in range(1, len(self.plc) + 1)}
         self.lecturer_wstcounter = {'l' + str(i): [0, []] for i in range(1, len(self.lp) + 1)}
 
         self.blockingpair = False
+        self.is_feasible = True
+        self.has_one_feasible_matching = False
+
+    # ----------------------------------------------------------------------
+    # -------------------------- CHECK FEASIBILITY -------------------------
+    # ----------------------------------------------------------------------
+    def check_feasibility(self):
+        project_cnt = {
+            'p' + str(i): 0 for i in range(1, len(self.plc) + 1)
+        }
+        for student in self.M:
+            project = self.M[student]
+            if project != '':
+                project_cnt[project] += 1
+        for project in self.plc:
+            if project_cnt[project] < self.proj_lower_quota[project]:
+                self.is_feasible = False
+                break
 
     # ----------------------------------------------------------------------
     #   --------------------- BLOCKING PAIR CRITERIA ----------------------
@@ -126,6 +145,14 @@ class ESMS:
             else:
                 print('-' * 50)
                 print(self.M)
+                self.is_feasible = True
+                self.check_feasibility()
+                if self.is_feasible:
+                    # print("Is Feasibile?: True")
+                    self.has_one_feasible_matching = True
+                    return
+
+
 
 
         else:
