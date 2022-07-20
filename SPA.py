@@ -1,3 +1,5 @@
+import copy
+
 from Reduction import Reduction
 from queue import Queue
 
@@ -27,11 +29,11 @@ class SPA:
         self.final_matching = dict()
 
         # used for check stability
-        self.init_sp = self.sp
-        self.init_plc = self.plc
-        self.init_lp = self.lp
-        self.init_lp_rank = self.lp_rank
-        self.init_proj_rank = self.proj_rank
+        self.init_sp = copy.deepcopy(self.sp)
+        self.init_plc = copy.deepcopy(self.plc)
+        self.init_lp = copy.deepcopy(self.lp)
+        self.init_lp_rank = copy.deepcopy(self.lp_rank)
+        self.init_proj_rank = copy.deepcopy(self.proj_rank)
         self.blockingpair = False
         self.project_wstcounter = {project: [0, []] for project in self.plc}
         self.lecturer_wstcounter = {lecturer: [0, []] for lecturer in self.lp}
@@ -154,7 +156,18 @@ class SPA:
         if is_final_matching:
             print(self.final_matching)
         else:
-            print(self.s_p_matching)
+            self.check_stability()
+            if self.blockingpair:
+                print("No Stable Matching")
+            else:
+                res = dict()
+                for student in self.sp:
+                    if student in self.s_p_matching.keys():
+                        project = self.s_p_matching[student][0:2]
+                    else:
+                        project = ''
+                    res[student] = project
+                print(res)
 
     def transform_m1_to_m(self):
         for s in self.s_p_matching:
@@ -179,14 +192,14 @@ class SPA:
     def blockingpair1(self, project, lecturer):
         #  project and lecturer are both under-subscribed
         if self.init_plc[project][1] > len(self.p_s_matching[project]) and self.init_lp[lecturer][0] > len(
-                self.l_s_matching[project]):
+                self.l_s_matching[lecturer]):
             # print("type 1:, ", project)
             self.blockingpair = True
 
     def blockingpair2(self, student, project, lecturer, m):
         #  project is under-subscribed, lecturer is full and l_k prefers s_i to its worst student in M(l_k)
         if self.init_plc[project][1] > len(self.p_s_matching[project]) and self.init_lp[lecturer][0] == len(
-                self.l_s_matching[project]):
+                self.l_s_matching[lecturer]):
             matched_project = m[student]
             # check if the student is already matched to a project offered by l_k
             if matched_project != '':
@@ -204,12 +217,14 @@ class SPA:
         if self.init_plc[project][1] == len(self.p_s_matching[project]):
             student_rank_Lkj = self.init_proj_rank[project][student]
             if student_rank_Lkj < self.project_wstcounter[project][0]:
-                # print("type 3:, ", student, project, self.project_wstcounter[project][0])
+                print("type 3:, ", student, project, self.project_wstcounter[project][0], student_rank_Lkj)
                 self.blockingpair = True
 
     def check_stability(self):
         self.update_worst_counter()
         m = self.s_p_matching
+        # print(self.sp)
+        # print(self.init_sp)
         for student in m:
             # if student s_i is not assigned in M, we check if it forms a blocking pair with all the projects in A(s_i).
             if m[student] == '':
@@ -239,24 +254,26 @@ class SPA:
                 self.blockingpair3(student, project, lecturer)
                 if self.blockingpair:
                     print("3")
+                    # print(rank_matched_project, p, p_list)
                     break
 
             if self.blockingpair:
                 break
 
 
-spa = SPA("input.txt")
-spa.spa_students()
-print("")
-print("M': Matching in SPA:")
-spa.show_matching(False)
-
-spa.transform_m1_to_m()
-spa.check_stability()
-print("Project worst student counter:")
-print(spa.project_wstcounter)
-print("******* Is blocking pair?: *******")
-print(spa.blockingpair)
-# print("M: Final Matching:")
-# spa.show_matching(True)
-print("")
+# spa = SPA("input.txt")
+# spa = SPA("instances/instance1.txt")
+# spa.spa_students()
+# print("")
+# print("M': Matching in SPA:")
+# spa.show_matching(False)
+#
+# spa.transform_m1_to_m()
+# spa.check_stability()
+# print("Project worst student counter:")
+# print(spa.project_wstcounter)
+# print("******* Is blocking pair?: *******")
+# print(spa.blockingpair)
+# # print("M: Final Matching:")
+# # spa.show_matching(True)
+# print("")

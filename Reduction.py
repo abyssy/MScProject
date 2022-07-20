@@ -129,15 +129,16 @@ class Reduction:
             self.sp[student] = [preference_list, rank]
 
 
-filename = "input.txt"
-r = Reduction(filename)
-print("Student_Project:")
-print(r.sp)
-print("Project_lecturer:")
-print(r.plc)
-print("Lecturer_project:")
-print(r.lp)
-print("Lecturer_project_rank:")
-print(r.lp_rank)
-print("project_rank:")
-print(r.proj_rank)
+# filename = "input.txt"
+# filename = "instances/instance1.txt"
+# r = Reduction(filename)
+# print("Student_Project:")
+# print(r.sp)
+# print("Project_lecturer:")
+# print(r.plc)
+# print("Lecturer_project:")
+# print(r.lp)
+# print("Lecturer_project_rank:")
+# print(r.lp_rank)
+# print("project_rank:")
+# print(r.proj_rank)
