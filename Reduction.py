@@ -134,7 +134,7 @@ class Reduction:
 
 
 # filename = "input.txt"
-# filename = "instances_SPASLQP/instance1.txt"
+# filename = "instances_SPASLQP/instance398.txt"
 # r = Reduction(filename)
 # print("Student_Project:")
 # print(r.sp)

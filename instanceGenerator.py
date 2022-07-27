@@ -125,11 +125,14 @@ class SPAS:
 
                 # ---------------------------------------------------------------------------------------------------------------------------------------
                 #  ..write each project's index, its capacity and the lecturer who proposed it ------- 1 5 1
+                remain_capacity = {lecturer: self.lp[lecturer][0] for lecturer in self.lp}
                 for m in range(1, self.projects + 1):
                     project = 'p' + str(m)
                     capacity = self.plc[project][0]
                     lecturer = self.plc[project][1][1:]  # index of the lecturer that offers the project
-                    lower_quota = random.randrange(0, min(capacity, 3))
+                    lecturer_name = 'l' + str(lecturer)
+                    lower_quota = random.randrange(0, min(min(capacity, remain_capacity[lecturer_name]), 3))
+                    remain_capacity[lecturer_name] -= lower_quota
                     # SPA: I.write(str(m) + ' ' + str(capacity) + ' 0 ' + str(lecturer))
                     # SPASLQP:
                     I.write(str(m) + ' ' + str(capacity) + ' ' + str(lower_quota) + ' ' + str(lecturer))
@@ -154,7 +157,7 @@ class SPAS:
 
 students = 10
 lower_bound, upper_bound = 5, 5  # make sure this does not exceed the total number of projects
-for k in range(1, 51):
+for k in range(1, 10001):
     S = SPAS(students, lower_bound, upper_bound)
     S.instance_generator_no_tie()
     file = 'instance' + str(k) + '.txt'

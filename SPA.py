@@ -187,9 +187,16 @@ class SPA:
         for project in self.init_plc:
             if self.project_wstcounter[project][1] != []:
                 self.project_wstcounter[project][0] = max(self.project_wstcounter[project][1])
+            if project not in self.p_s_matching.keys():
+                self.p_s_matching[project] = []
         for lecturer in self.init_lp:
             if self.lecturer_wstcounter[lecturer][1] != []:
                 self.lecturer_wstcounter[lecturer][0] = max(self.lecturer_wstcounter[lecturer][1])
+            if lecturer not in self.l_s_matching.keys():
+                self.l_s_matching[lecturer] = []
+        # for student in self.init_sp:
+        #     if student not in self.s_p_matching:
+        #         self.s_p_matching[student] = ''
 
     def blockingpair1(self, project, lecturer):
         #  project and lecturer are both under-subscribed
@@ -225,6 +232,7 @@ class SPA:
     def check_stability(self):
         self.update_worst_counter()
         m = self.s_p_matching
+        print("m: ", m)
         # print(self.sp)
         # print(self.init_sp)
         for student in m:
@@ -239,6 +247,7 @@ class SPA:
                 p_list = self.init_sp[student][0]  # list of pj's wrt to s_i      # a copy of A(s_i)
                 # we check all the projects that comes before the assigned project in A(s_i)
                 p = p_list[:rank_matched_project]
+            # print(student, p)
 
             for project in p:
                 lecturer = self.init_plc[project][0]  # l_k

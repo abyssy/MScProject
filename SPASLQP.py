@@ -127,6 +127,9 @@ class SPASLQP:
                     # print(lecturer)
                     # print(self.spa_lp[lecturer][0])
                     # print(self.l_s_matching[lecturer])
+                    if lecturer not in self.l_s_matching.keys():
+                        self.is_feasible = False
+                        break
                     if self.spa_lp[lecturer][0] != len(self.l_s_matching[lecturer]):
                         self.is_feasible = False
                         break

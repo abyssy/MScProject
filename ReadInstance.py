@@ -74,8 +74,8 @@ class ReadInstance:
 
 
 # s = ReadInstance()
-# # filename = "input.txt"
-# filename = "instances/instance1.txt"
+# filename = "input.txt"
+# filename = "instances_SPASLQP/instance398.txt"
 # s.read_file(filename)
 # print("Student_Project:")
 # print(s.sp)

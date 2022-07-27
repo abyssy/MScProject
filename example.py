@@ -16,25 +16,25 @@ from SPASLQP import SPASLQP
 #     print('\n')
 
 # SPA_SLQP:
-for k in range(1, 21):
+for k in range(8001, 10001):
     filename = 'instances_SPASLQP/instance'+str(k)+'.txt'
     print('SPA_SLQP: instance' + str(k) + '.txt')
     E = ESMS(filename)
     E.choose(1)
-    if E.has_one_feasible_matching:
-        print("Brute Force: Has a feasible matching!")
-    else:
-        print("Brute Force: No feasible matching!")
+    # if E.has_one_feasible_matching:
+    #     print("Brute Force: Has a feasible matching!")
+    # else:
+    #     print("Brute Force: No feasible matching!")
 
     s = SPASLQP(filename)
     print('-' * 50)
     print("Matching in SPASLQP:")
     s.show_matching()
     s.algorithm_for_SPASLQ()
-    if s.is_feasible:
-        print("SPA_SLQP: Has a feasible matching!")
-    else:
-        print("SPA_SLQP: No feasible matching!")
+    # if s.is_feasible:
+    #     print("SPA_SLQP: Has a feasible matching!")
+    # else:
+    #     print("SPA_SLQP: No feasible matching!")
     # print("******* Is feasible?: *******")
     # print("Is feasible?:", s.is_feasible)
 

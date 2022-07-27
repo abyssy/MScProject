@@ -123,7 +123,8 @@ class ESMS:
     # The check_stability function is used to print only the stable matchings
     # ------------------------------------------------------------------------
     def choose(self, i):
-
+        if self.has_one_feasible_matching:
+            return
         if i > self.students:
 
             """
@@ -148,7 +149,7 @@ class ESMS:
                 self.is_feasible = True
                 self.check_feasibility()
                 if self.is_feasible:
-                    # print("Is Feasibile?: True")
+                    print("This solution is Feasibile.")
                     self.has_one_feasible_matching = True
                     return
 
