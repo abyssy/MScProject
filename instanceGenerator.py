@@ -157,12 +157,12 @@ class SPAS:
 
 students = 10
 lower_bound, upper_bound = 5, 5  # make sure this does not exceed the total number of projects
-for k in range(1, 10001):
+for k in range(1, 500):
     S = SPAS(students, lower_bound, upper_bound)
     S.instance_generator_no_tie()
     file = 'instance' + str(k) + '.txt'
     # SPA:
-    # filename = 'instances/' + file
+    filename = 'instances/' + file
     # SPASLQP:
-    filename = 'instances_SPASLQP/' + file
+    # filename = 'instances_SPASLQP/' + file
     S.write_instance_no_ties(filename)

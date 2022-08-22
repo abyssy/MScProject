@@ -5,6 +5,7 @@ Created on Mon Jul 20 21:34:50 2020
 
 @author: sofiat
 """
+import copy
 
 from readinput import SPAS
 
@@ -27,12 +28,15 @@ class ESMS:
         self.proj_lower_quota = r.proj_lower_quota
 
         self.M = {s: '' for s in self.sp}
+        self.res = {s: '' for s in self.sp}
         self.project_wstcounter = {'p' + str(i): [0, []] for i in range(1, len(self.plc) + 1)}
         self.lecturer_wstcounter = {'l' + str(i): [0, []] for i in range(1, len(self.lp) + 1)}
 
         self.blockingpair = False
         self.is_feasible = True
         self.has_one_feasible_matching = False
+
+        self.has_a_matching = False
 
     # ----------------------------------------------------------------------
     # -------------------------- CHECK FEASIBILITY -------------------------
@@ -123,8 +127,10 @@ class ESMS:
     # The check_stability function is used to print only the stable matchings
     # ------------------------------------------------------------------------
     def choose(self, i):
-        if self.has_one_feasible_matching:
-            return
+        # if self.has_one_feasible_matching:
+        #     return
+        # if self.has_a_matching:
+        #     return
         if i > self.students:
 
             """
@@ -146,6 +152,8 @@ class ESMS:
             else:
                 print('-' * 50)
                 print(self.M)
+                self.has_a_matching = True
+                self.res = copy.deepcopy(self.M)
                 self.is_feasible = True
                 self.check_feasibility()
                 if self.is_feasible:

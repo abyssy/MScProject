@@ -30,10 +30,19 @@ class SPASLQP:
         self.project_cnt = {project: 0 for project in self.plc}
         self.lecturer_cnt = {lecturer: 0 for lecturer in self.lp}
 
+        self.res = dict()
+        for student in self.sp:
+            if student in self.m.keys():
+                project = self.m[student][0:2]
+            else:
+                project = ''
+            self.res[student] = project
+
         self.spa_sp = spa.sp
         self.spa_plc = spa.plc
         self.spa_lp = spa.lp
         self.l_s_matching = spa.l_s_matching
+        self.p_s_matching = spa.p_s_matching
 
     def update_worst_counter(self):
         for student in self.m:
@@ -53,7 +62,7 @@ class SPASLQP:
     def blockingpair1(self, project, lecturer):
         #  project and lecturer are both under-subscribed
         if self.plc[project][1] > self.project_cnt[project] and self.lp[lecturer][0] > self.lecturer_cnt[lecturer]:
-            # print("type 1:, ", project)
+            print("type 1:, ", project)
             self.blockingpair = True
 
     def blockingpair2(self, student, project, lecturer, m):
@@ -64,11 +73,12 @@ class SPASLQP:
             if matched_project != '':
                 lec = self.plc[matched_project][0]
                 if lec == lecturer:
+                    print("type 2a:, ", student, lecturer)
                     self.blockingpair = True
             # check if s_i is in a position before the worst student assigned to l_k
             student_rank_Lk = self.lp_rank[lecturer][student]
             if student_rank_Lk < self.lecturer_wstcounter[lecturer][0]:
-                # print("type 2b:, ", student, project)
+                print("type 2b:, ", student, project)
                 self.blockingpair = True
 
     def blockingpair3(self, student, project, lecturer):
@@ -76,11 +86,12 @@ class SPASLQP:
         if self.plc[project][1] == self.project_cnt[project]:
             student_rank_Lkj = self.proj_rank[project][student]
             if student_rank_Lkj < self.project_wstcounter[project][0]:
-                # print("type 3:, ", student, project, self.project_wstcounter[project][0])
+                print("type 3:, ", student, project, self.project_wstcounter[project][0])
                 self.blockingpair = True
 
     def check_stability(self):
         self.update_worst_counter()
+        # print(self.m)
         # print(self.project_cnt)
         # print(self.project_wstcounter)
         # print(self.lecturer_wstcounter)
@@ -103,17 +114,17 @@ class SPASLQP:
 
                 self.blockingpair1(project, lecturer)
                 if self.blockingpair:
-                    # print("1")
+                    print("1")
                     break
 
                 self.blockingpair2(student, project, lecturer, m)
                 if self.blockingpair:
-                    # print("2")
+                    print("2")
                     break
 
                 self.blockingpair3(student, project, lecturer)
                 if self.blockingpair:
-                    # print("3")
+                    print("3")
                     break
 
             if self.blockingpair:
@@ -122,15 +133,26 @@ class SPASLQP:
     def algorithm_for_SPASLQ(self):
         # if M is stable in I then
         if not self.blockingpair:
-            for lecturer in self.spa_lp:
-                if lecturer[2] == '2':
-                    # print(lecturer)
-                    # print(self.spa_lp[lecturer][0])
-                    # print(self.l_s_matching[lecturer])
-                    if lecturer not in self.l_s_matching.keys():
+            # old SPASLQP feasible checking
+            # for lecturer in self.spa_lp:
+            #     if lecturer[2] == '2':
+            #         # print(lecturer)
+            #         # print(self.spa_lp[lecturer][0])
+            #         # print(self.l_s_matching[lecturer])
+            #         if lecturer not in self.l_s_matching.keys():
+            #             self.is_feasible = False
+            #             break
+            #         if self.spa_lp[lecturer][0] != len(self.l_s_matching[lecturer]):
+            #             self.is_feasible = False
+            #             break
+
+            # new feasible checking
+            for project in self.spa_plc:
+                if project[2] == '2':
+                    if project not in self.p_s_matching.keys():
                         self.is_feasible = False
                         break
-                    if self.spa_lp[lecturer][0] != len(self.l_s_matching[lecturer]):
+                    if self.spa_plc[project][1] != len(self.p_s_matching[project]):
                         self.is_feasible = False
                         break
         else:
@@ -152,9 +174,10 @@ class SPASLQP:
 
 
 # s = SPASLQP("input.txt")
+# # s = SPASLQP("instances_SPASLQP/instance1216.txt")
 # s.check_stability()
 # print("Matching in SPASLQP:")
-# print(s.m)
+# print(s.res)
 # print("Project worst student counter:")
 # print(s.project_wstcounter)
 # print("******* Is blocking pair?: *******")

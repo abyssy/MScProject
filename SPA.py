@@ -2,11 +2,16 @@ import copy
 
 from Reduction import Reduction
 from queue import Queue
+from ReadInstance import ReadInstance
+from new_Reduction import new_Reduction
 
 
 class SPA:
     def __init__(self, filename):
         self.filename = filename
+        # r = new_Reduction(filename)
+        # r = ReadInstance()
+        # r.read_file(filename)
         r = Reduction(filename)
         self.students = r.students
         self.projects = r.projects
@@ -168,8 +173,9 @@ class SPA:
                     else:
                         project = ''
                     res[student] = project
-                self.res = res
-                print(res)
+                    self.res[student] = project
+                # print(res)
+                print(self.res)
 
     def transform_m1_to_m(self):
         for s in self.s_p_matching:
@@ -226,13 +232,15 @@ class SPA:
         if self.init_plc[project][1] == len(self.p_s_matching[project]):
             student_rank_Lkj = self.init_proj_rank[project][student]
             if student_rank_Lkj < self.project_wstcounter[project][0]:
-                print("type 3:, ", student, project, self.project_wstcounter[project][0], student_rank_Lkj)
+                # print("type 3:, ", student, project, self.project_wstcounter[project][0], student_rank_Lkj)
                 self.blockingpair = True
 
     def check_stability(self):
         self.update_worst_counter()
         m = self.s_p_matching
-        print("m: ", m)
+        # print("m: ", m)
+        # print(self.project_wstcounter)
+        # print(self.lecturer_wstcounter)
         # print(self.sp)
         # print(self.init_sp)
         for student in m:
@@ -254,17 +262,17 @@ class SPA:
 
                 self.blockingpair1(project, lecturer)
                 if self.blockingpair:
-                    print("1")
+                    # print("1")
                     break
 
                 self.blockingpair2(student, project, lecturer, m)
                 if self.blockingpair:
-                    print("2")
+                    # print("2")
                     break
 
                 self.blockingpair3(student, project, lecturer)
                 if self.blockingpair:
-                    print("3")
+                    # print("3")
                     # print(rank_matched_project, p, p_list)
                     break
 
@@ -272,12 +280,12 @@ class SPA:
                 break
 
 
-# spa = SPA("input.txt")
-# spa = SPA("instances/instance1.txt")
-# spa.spa_students()
+spa = SPA("input.txt")
+# spa = SPA("instances_SPASLQP/instance518.txt")
+spa.spa_students()
 # print("")
 # print("M': Matching in SPA:")
-# spa.show_matching(False)
+spa.show_matching(False)
 #
 # spa.transform_m1_to_m()
 # spa.check_stability()

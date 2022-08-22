@@ -38,6 +38,7 @@ class ReadInstance:
             # project = [lecturer, project_capacity_yet_to_be_filled, full(project) = False, keep track of students that was rejected from project]
             # length of the preferred students for p_j according to l_k to be appended when we have more information..
             self.plc['p' + str(entry[0])] = ['l' + str(entry[3]), int(entry[1]), int(entry[2])]
+            # self.plc['p' + str(entry[0])] = ['l' + str(entry[3]), int(entry[1])]
         # -------------------------------------------------------------------------------------------------------------------
 
         # -------------------------------------------------------------------------------------------------------------------
@@ -75,6 +76,7 @@ class ReadInstance:
 
 # s = ReadInstance()
 # filename = "input.txt"
+# s = ReadInstance()
 # filename = "instances_SPASLQP/instance398.txt"
 # s.read_file(filename)
 # print("Student_Project:")
